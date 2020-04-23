@@ -19,8 +19,9 @@
 
 	<body>
 
-
+		<!-- error processing -->
 		<?php
+
 			if(isset($_GET['error'])){
 				if($_GET['error'] == 'emptyfields'){
 					echo '<p class="error">';
@@ -28,6 +29,12 @@
 					echo '</p>';
 
 				} 
+
+				else if($_GET['error'] == 'invalidName') {
+					echo '<p class="error">';
+					echo 'Invalid name';
+					echo '</p>';
+				}
 
 				else if($_GET['error'] == 'emailExists'){
 					echo '<p class="error">';

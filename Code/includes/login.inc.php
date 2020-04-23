@@ -1,9 +1,11 @@
 <?php
-	$accounts=array(
-		"adam@gmail.com" => '1233',
-		"adf" => '5555',
-		"JoeDoe" => "Hi123"
-	);
+	include "dbconnect.inc.php";
+
+	// $accounts=array(
+	// 	"adam@gmail.com" => '1233',
+	// 	"adf" => '5555',
+	// 	"JoeDoe" => "Hi123"
+	// );
 
 	if(isset($_POST["register"])) {
 		header("Location: ../register.php");
@@ -32,22 +34,39 @@
 	}
 
 	else {
-		if(array_key_exists($email, $accounts)){
-			if($password == $accounts[$email]){
+		$query = "SELECT EMAIL, PASSWORD FROM user ";
+		$query .= "WHERE EMAIL = ?";
+		//prepare query
+		$stmt = $conn->prepare($query);
+		//bind param
+		$stmt->bind_param("s", $email);
+		//execute
+		$stmt->execute();
+		//get result
+		$result = $stmt->get_result();
+
+		//if email exists
+		if($result->num_rows == 1){
+			//get 1 and only row
+			$account = $result->fetch_assoc();
+			//var_dump($account);
+			if($password == $account["PASSWORD"]){
 				//setcookie('username', $username, time()+3600, '/');
 				//header("Location: ../welcome.php");
 				//exit();
 				echo "HI ".$email;
 			} 
 
+			//wrong password
 			else{
 				header("Location: ../index.php?error=wrongpwd&email=".$email);
 				exit();
 			}
 		} 
 
+		//wrong email
 		else{
-			header("Location: ../index.php?error=wrongemail");
+			header("Location: ../index.php?error=wrongemail&email=".$email);
 			exit();
 		}
 	}
