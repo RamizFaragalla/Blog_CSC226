@@ -1,7 +1,7 @@
 <?php
 	$accounts=array(
-		"Adam" => '1233',
-		"John" => '5555',
+		"adam@gmail.com" => '1233',
+		"adf" => '5555',
 		"JoeDoe" => "Hi123"
 	);
 
@@ -22,32 +22,32 @@
   		return $data;
 	}
 
-	$username = test_input($_POST["username"]);
+	$email = test_input($_POST["email"]);
 	$password = test_input($_POST["password"]);
 
 	// one of the fields is empty, or both
-	if(empty($username) || empty($password)) {
-		header("Location: ../index.php?error=emptyfields&username=".$username);
+	if(empty($email) || empty($password)) {
+		header("Location: ../index.php?error=emptyfields&email=".$email);
 		exit();
 	}
 
 	else {
-		if(array_key_exists($username, $accounts)){
-			if($password == $accounts[$username]){
+		if(array_key_exists($email, $accounts)){
+			if($password == $accounts[$email]){
 				//setcookie('username', $username, time()+3600, '/');
 				//header("Location: ../welcome.php");
 				//exit();
-				echo "HI ".$username;
+				echo "HI ".$email;
 			} 
 
 			else{
-				header("Location: ../index.php?error=wrongpwd&username=".$username);
+				header("Location: ../index.php?error=wrongpwd&email=".$email);
 				exit();
 			}
 		} 
 
 		else{
-			header("Location: ../index.php?error=wrongusername");
+			header("Location: ../index.php?error=wrongemail");
 			exit();
 		}
 	}

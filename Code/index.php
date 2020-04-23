@@ -27,9 +27,9 @@
 					echo 'Please fill in all fields';
 					echo '</p>';
 
-				} else if($_GET['error'] == 'wrongusername'){
+				} else if($_GET['error'] == 'wrongemail'){
 					echo '<p class="error">';
-					echo 'Username cannot be found';
+					echo 'Email cannot be found';
 					echo '</p>';
 				} else{
 					echo '<p class="error">';
@@ -42,12 +42,12 @@
 		
 		<form action="includes/login.inc.php" method="post">
 			
-			<legend>Please enter your username and password:<br><br></legend>
+			<legend>Please enter your email and password:<br><br></legend>
 
-			<!-- username field -->
+			<!-- email field -->
 			<p align = "center">
-				<label>UserName: <input type="text" name="username" size="20" maxlength="40" placeholder="Username"
-					value=<?php echo isset($_GET['username']) ? $_GET['username'] : ' '?>>
+				<label>&nbsp;&nbsp;&nbsp;Email: <input type="email" name="email" size="20" maxlength="40" placeholder="Email"
+					value=<?php echo isset($_GET['email']) ? $_GET['email'] : ' '?>>
 				</label>
 			</p>
 

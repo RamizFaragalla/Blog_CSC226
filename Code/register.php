@@ -29,9 +29,9 @@
 
 				} 
 
-				else if($_GET['error'] == 'usernameExists'){
+				else if($_GET['error'] == 'emailExists'){
 					echo '<p class="error">';
-					echo 'Username already exists';
+					echo 'Email already exists';
 					echo '</p>';
 				}
 			} 
@@ -40,12 +40,19 @@
 		
 		<form action="includes/registration.inc.php" method="post">
 			
-			<legend>Please create a username and a password:<br><br></legend>
+			<legend>Please fill this form:<br><br></legend>
 
-			<!-- username field -->
+			<!-- name field -->
 			<p align = "center">
-				<label>UserName: <input type="text" name="username" size="20" maxlength="40" placeholder="Username"
-					value=<?php echo isset($_GET['username']) ? $_GET['username'] : ' '?>>
+				<label>Full Name: <input type="text" name="name" size="20" maxlength="40" placeholder="Full Name"
+					value=<?php echo isset($_GET['name']) ? $_GET['name'] : ' '?>>
+				</label>
+			</p>
+
+			<!-- email field -->
+			<p align = "center">
+				<label>&nbsp;&nbsp;&nbsp;Email: <input type="email" name="email" size="20" maxlength="40" placeholder="Email"
+					value=<?php echo isset($_GET['email']) ? $_GET['email'] : ' '?>>
 				</label>
 			</p>
 
