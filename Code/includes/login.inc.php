@@ -54,7 +54,8 @@
 				//setcookie('username', $username, time()+3600, '/');
 				//header("Location: ../welcome.php");
 				//exit();
-				echo "HI ".$email;
+				header("Location: ../mainPage.php");
+				exit();
 			} 
 
 			//wrong password

@@ -31,4 +31,23 @@
 	//new ID
 
 	echo $id;
+	echo "<br><br>";
+
+	$query1 = "SELECT u.NAME, p.TITLE, p.CONTENT, p.DATE ";
+	$query1 .= "FROM user u ";
+	$query1 .= "JOIN post p ";
+	$query1 .= "ON u.USER_ID = p.USER_ID ";
+	//$query1 .= "ORDER BY DATE DESC ";
+	//$query1 .= "LIMIT ?, ?";
+
+	//echo $query1;
+	$stmt = $conn->prepare($query1);
+	//$stmt->bind_param("ii", $start, $pagerows);
+
+	//execute query
+	$stmt->execute();
+	//get result
+	// object oriented: $stmt is an instance of an object that tries to use functions in parent object
+	$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+	var_dump($result);
 ?>

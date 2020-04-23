@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>Blog Register</title>
 		<style>
 			.error{
 				color: red;

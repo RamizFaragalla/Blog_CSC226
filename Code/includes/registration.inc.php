@@ -77,7 +77,8 @@
 		//execute
 		$stmt->execute();
 		
-		echo $name .", account created successfully";
+		header("Location: ../mainPage.php");
+		exit();
 	}
 	
 ?>
