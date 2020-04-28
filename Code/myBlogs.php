@@ -1,11 +1,17 @@
 <?php
+	session_start();
 	include "includes/dbconnect.inc.php";
+	if(!isset($_SESSION["userID"])){
+	    // redirect them to your desired location
+	    header('location: index.php');
+    exit;
+}
 	// add a search bar
 	//add a session before logging in or registering
 ?>
 <html>
 	<head>
-		<title>Blog</title>
+		<title>My Blogs</title>
 	</head>
 		<?php
 			include "includes/header.php";
@@ -54,18 +60,21 @@
 			//finished check number of pages
 
 			//full $query1 = "SELECT CUSTOMER_NAME FROM CUSTOMER LIMIT ?, ?";
-			$query1 = "SELECT u.NAME, p.TITLE, p.CONTENT, p.DATE ";
+			$query1 = "SELECT u.NAME, p.TITLE, p.CONTENT, p.DATE, p.POST_ID ";
 			$query1 .= "FROM user u ";
 			$query1 .= "JOIN post p ";
 			$query1 .= "ON u.USER_ID = p.USER_ID ";
-			$query1 .= "ORDER BY DATE DESC ";
-			$query1 .= "LIMIT ?, ?";
+			$query1 .= "WHERE u.USER_ID = ?";
+			$query1 .= " ORDER BY DATE DESC ";
+			$query1 .= " LIMIT ?, ?";
 
 			//echo $query1;
 			$stmt = $conn->prepare($query1);
 
+			// current user
+			$id = $_SESSION["userID"];
 			//binding parameter
-			$stmt->bind_param("ii", $start, $pagerows);
+			$stmt->bind_param("iii", $id, $start, $pagerows);
 
 			//execute query
 			$stmt->execute();
@@ -79,8 +88,9 @@
 
 		<?php
 			foreach($result as $post){
-			
-				echo $post['TITLE']."<br>";
+				//echo $post["POST_ID"];
+				$link = "edit_delete.php?postID=".$post["POST_ID"];
+				echo $post['TITLE'].' <a href='.$link.'><button>Edit/Delete</button></a><br>';
 				echo "By ".$post['NAME']." on ";
 				echo $post['DATE'];
 				echo "<br><br>";
@@ -91,7 +101,7 @@
 		
 		<?php
 			} else{
-				echo "<p>There are no records!!! </p>";
+				echo "<p>You haven't writen any blogs yet! </p>";
 				exit();
 			}
 

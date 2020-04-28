@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include "dbconnect.inc.php";
 
 	// $accounts=array(
@@ -34,7 +35,7 @@
 	}
 
 	else {
-		$query = "SELECT EMAIL, PASSWORD FROM user ";
+		$query = "SELECT EMAIL, PASSWORD, USER_ID FROM user ";
 		$query .= "WHERE EMAIL = ?";
 		//prepare query
 		$stmt = $conn->prepare($query);
@@ -54,6 +55,9 @@
 				//setcookie('username', $username, time()+3600, '/');
 				//header("Location: ../welcome.php");
 				//exit();
+				// start a session
+				
+				$_SESSION['userID'] = $account["USER_ID"];
 				header("Location: ../mainPage.php");
 				exit();
 			} 

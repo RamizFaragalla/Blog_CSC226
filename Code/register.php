@@ -53,14 +53,14 @@
 			<!-- name field -->
 			<p align = "center">
 				<label>Full Name: <input type="text" name="name" size="20" maxlength="40" placeholder="Full Name"
-					value=<?php echo isset($_GET['name']) ? $_GET['name'] : ' '?>>
+					value="<?php echo isset($_GET['name']) ? $_GET['name'] : ' '?>">
 				</label>
 			</p>
 
 			<!-- email field -->
 			<p align = "center">
 				<label>&nbsp;&nbsp;&nbsp;Email: <input type="email" name="email" size="20" maxlength="40" placeholder="Email"
-					value=<?php echo isset($_GET['email']) ? $_GET['email'] : ' '?>>
+					value="<?php echo isset($_GET['email']) ? $_GET['email'] : ' '?>">
 				</label>
 			</p>
 

@@ -48,7 +48,7 @@
 			<!-- email field -->
 			<p align = "center">
 				<label>&nbsp;&nbsp;&nbsp;Email: <input type="email" name="email" size="20" maxlength="40" placeholder="Email"
-					value=<?php echo isset($_GET['email']) ? $_GET['email'] : ' '?>>
+					value="<?php echo isset($_GET['email']) ? $_GET['email'] : ' '?>">
 				</label>
 			</p>
 

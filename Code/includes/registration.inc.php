@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include "dbconnect.inc.php";
 	// $accounts=array(
 	// 	"adam@gmail.com" => '1233',
@@ -81,6 +82,9 @@
 		//execute
 		$stmt->execute();
 		
+		
+		$_SESSION['userID'] = $id;
+
 		header("Location: ../mainPage.php");
 		exit();
 	}
