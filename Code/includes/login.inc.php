@@ -50,7 +50,7 @@
 			//get 1 and only row
 			$account = $result->fetch_assoc();
 			//var_dump($account);
-			if($password == $account["PASSWORD"]){
+			if(password_verify($password, $account["PASSWORD"])){
 				//setcookie('username', $username, time()+3600, '/');
 				//header("Location: ../welcome.php");
 				//exit();

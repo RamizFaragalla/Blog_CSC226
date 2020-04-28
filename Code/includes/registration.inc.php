@@ -68,12 +68,16 @@
 		$id += 100;
 
 		$query = "INSERT INTO user VALUES";
-		//USER_ID, NAME, EsMAIL, PASSWORD
+		//USER_ID, NAME, EMAIL, PASSWORD
 		$query .= "(?, ?, ?, ?)";
+
+		// hash the password
+		$hashed_pwd = password_hash($password, PASSWORD_DEFAULT);
+
 		//prepare query
 		$stmt = $conn->prepare($query);
 		//bind param
-		$stmt->bind_param("ssss", $id, $name, $email, $password);
+		$stmt->bind_param("ssss", $id, $name, $email, $hashed_pwd);
 		//execute
 		$stmt->execute();
 		
