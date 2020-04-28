@@ -1,0 +1,8 @@
+need:
+
+- header: username, email, num posts, log out
+- hashing
+- session
+- create with file upload
+- update / delete
+- add a search bar ??

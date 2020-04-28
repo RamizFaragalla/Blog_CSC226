@@ -68,7 +68,7 @@
 		$id += 100;
 
 		$query = "INSERT INTO user VALUES";
-		//USER_ID, NAME, EMAIL, PASSWORD
+		//USER_ID, NAME, EsMAIL, PASSWORD
 		$query .= "(?, ?, ?, ?)";
 		//prepare query
 		$stmt = $conn->prepare($query);
