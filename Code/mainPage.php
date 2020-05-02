@@ -1,15 +1,23 @@
 <?php
+	session_start();
+	if (!isset($_SESSION["userID"])) {
+  		header("Location: index.php");
+  		exit();
+	}
+
 	include "includes/dbconnect.inc.php";
+	
 	// add a search bar
 	//add a session before logging in or registering
 ?>
 <html>
 	<head>
-		<title>Blog</title>
+		<title>Home</title>
 	</head>
 		<?php
 			include "includes/header.php";
 		?>
+		<p>Home Page</p> <br>
 	<style>
 
 	* {
@@ -54,7 +62,7 @@
 			//finished check number of pages
 
 			//full $query1 = "SELECT CUSTOMER_NAME FROM CUSTOMER LIMIT ?, ?";
-			$query1 = "SELECT u.NAME, p.TITLE, p.CONTENT, p.DATE ";
+			$query1 = "SELECT u.NAME, p.TITLE, p.CONTENT, p.DATE, p.USER_ID, p.POST_ID ";
 			$query1 .= "FROM user u ";
 			$query1 .= "JOIN post p ";
 			$query1 .= "ON u.USER_ID = p.USER_ID ";
@@ -80,12 +88,17 @@
 		<?php
 			foreach($result as $post){
 			
-				echo $post['TITLE']."<br>";
+				echo $post['TITLE'];
+				if($post['USER_ID'] == $_SESSION["userID"]) {
+					$link = "edit_delete.php?postID=".$post["POST_ID"];
+					echo ' <a href='.$link.'><button>Edit/Delete</button></a>';
+				}
+				echo "<br>";
 				echo "By ".$post['NAME']." on ";
 				echo $post['DATE'];
 				echo "<br><br>";
 				echo $post['CONTENT'];
-				echo "<br>______________________________________<br>";
+				echo "<br><br><hr><br>";
 			}
 		?>
 		
@@ -94,14 +107,14 @@
 				echo "<p>There are no records!!! </p>";
 				exit();
 			}
-
+// <a href="mainPage.php" style="float: right;"> <button>Home</button> </a>
 			$stmt->close();
 			if( $current_page > 1){
-					echo '<a href="pagination2.php?page='.($current_page-1).'"> Previous </a>';
+					echo '<a href="mainPage.php?page='.($current_page-1).'"><button>Previous</button></a>';
 			}
 			if($current_page < $total_pages){
 				//<a href="pagination2.php?page=2"> Next </a>
-				echo '<a href="pagination2.php?page='.($current_page+1).'"> Next </a>';
+				echo '<a href="mainPage.php?page='.($current_page+1).'"> <button>Next</button> </a>';
 			}
 		?>
 	</body>

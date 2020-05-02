@@ -1,13 +1,11 @@
 need:
 
-- header: username, email, num posts, log out
 - create with file upload
-- add a search bar ??
-- restrict URL page access
-- logout
-- edit/delete option next to blogs in main page
-- main page button
+- security for (create and processCreate)
 
 - hashing +
 - session +
 - update / delete +
+- header: username, email, num posts, log out +
+- edit/delete option next to blogs in main page +
+- main page button +

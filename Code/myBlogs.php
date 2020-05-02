@@ -1,11 +1,12 @@
 <?php
 	session_start();
+	if (!isset($_SESSION["userID"])) {
+  		header("Location: index.php");
+  		exit();
+	}
+
 	include "includes/dbconnect.inc.php";
-	if(!isset($_SESSION["userID"])){
-	    // redirect them to your desired location
-	    header('location: index.php');
-    exit;
-}
+
 	// add a search bar
 	//add a session before logging in or registering
 ?>
@@ -16,6 +17,7 @@
 		<?php
 			include "includes/header.php";
 		?>
+		<p>My Blogs</p><br>
 	<style>
 
 	* {
@@ -95,7 +97,7 @@
 				echo $post['DATE'];
 				echo "<br><br>";
 				echo $post['CONTENT'];
-				echo "<br>______________________________________<br>";
+				echo "<br><br><hr><br>";
 			}
 		?>
 		
@@ -107,11 +109,11 @@
 
 			$stmt->close();
 			if( $current_page > 1){
-					echo '<a href="pagination2.php?page='.($current_page-1).'"> Previous </a>';
+					echo '<a href="myBlogs.php?page='.($current_page-1).'"><button>Previous</button></a>';
 			}
 			if($current_page < $total_pages){
 				//<a href="pagination2.php?page=2"> Next </a>
-				echo '<a href="pagination2.php?page='.($current_page+1).'"> Next </a>';
+				echo '<a href="myBlogs.php?page='.($current_page+1).'"> <button>Next</button> </a>';
 			}
 		?>
 	</body>

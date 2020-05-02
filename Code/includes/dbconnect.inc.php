@@ -1,4 +1,7 @@
 <?php
+	if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) { 
+		die(header("Location: logout.inc.php")); 
+	}
 	//reporting query and code errors based on flags set
 	mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 	//use try/catch blog for exception handling.

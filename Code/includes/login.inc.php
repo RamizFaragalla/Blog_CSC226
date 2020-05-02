@@ -1,5 +1,5 @@
 <?php
-	session_start();
+
 	include "dbconnect.inc.php";
 
 	// $accounts=array(
@@ -56,7 +56,7 @@
 				//header("Location: ../welcome.php");
 				//exit();
 				// start a session
-				
+				session_start();
 				$_SESSION['userID'] = $account["USER_ID"];
 				header("Location: ../mainPage.php");
 				exit();

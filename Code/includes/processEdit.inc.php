@@ -4,8 +4,8 @@
 	session_start();
 
 	// illegal access for security
-	if(!isset($_POST["update"]) && !isset($_POST["delete"])) {
-		header("Location: ../index.php");
+	if(!isset($_POST["update"]) && !isset($_POST["delete"]) && !isset($_POST["cancel"])) {
+		header("Location: ../logout.inc.php");
 		exit();
 	}
 
@@ -20,7 +20,7 @@
 	$content = test_input($_POST["content"]);
 
 	// one of the fields is empty, or both
-	if(!isset($_POST["delete"]) && (empty($title) || empty($content))) {
+	if(isset($_POST["update"]) && (empty($title) || empty($content))) {
 		//echo $title;
 		header("Location: ../edit_delete.php?error=emptyfields&title=".$title);
 		$_SESSION["content"] = $content;
@@ -45,6 +45,11 @@
 		$stmt = $conn->prepare($query);
 		$stmt->bind_param("i", $_SESSION["postID"]);
 		$stmt->execute();
+		header("Location: ../myBlogs.php");
+		exit();
+	}
+
+	else if(isset($_POST["cancel"])) {
 		header("Location: ../myBlogs.php");
 		exit();
 	}

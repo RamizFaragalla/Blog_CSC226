@@ -1,4 +1,9 @@
 <?php
+	if(!isset($_SERVER['HTTP_REFERER'])){
+    	// redirect them to your desired location
+    	header('location: includes/logout.inc.php');
+    	exit();
+	}
 	include "includes/dbconnect.inc.php";
 	session_start();
 ?>
@@ -91,6 +96,8 @@
 				<input type="submit" name="update" value="Update">
 
 				<input type="submit" name="delete" value="Delete">
+
+				<input type="submit" name="cancel" value="Cancel">
 			</p>
 
 		</form>

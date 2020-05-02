@@ -1,11 +1,7 @@
 <?php
-	session_start();
+	
 	include "dbconnect.inc.php";
-	// $accounts=array(
-	// 	"adam@gmail.com" => '1233',
-	// 	"John" => '5555',
-	// 	"JoeDoe" => "Hi123"
-	// );
+
 
 	if(!isset($_POST["registerForm"])) {
 		header("Location: ../register.php");
@@ -54,23 +50,23 @@
 
 	//add user to database
 	else {
-		//get USER_ID;
-		$query = "SELECT COUNT(USER_ID) FROM user ";
+		// //get USER_ID;
+		// $query = "SELECT COUNT(USER_ID) FROM user ";
 
-		//prepare query
-		$stmt = $conn->prepare($query);
+		// //prepare query
+		// $stmt = $conn->prepare($query);
 
-		//execute
-		$stmt->execute();
-		//get result
-		$row = $stmt->get_result()->fetch_all(MYSQLI_NUM);
-		$id = $row[0][0];
+		// //execute
+		// $stmt->execute();
+		// //get result
+		// $row = $stmt->get_result()->fetch_all(MYSQLI_NUM);
+		// $id = $row[0][0];
 
-		$id += 100;
+		// $id += 100;
 
-		$query = "INSERT INTO user VALUES";
+		$query = "INSERT INTO user(NAME, EMAIL, PASSWORD) VALUES";
 		//USER_ID, NAME, EMAIL, PASSWORD
-		$query .= "(?, ?, ?, ?)";
+		$query .= "(?, ?, ?)";
 
 		// hash the password
 		$hashed_pwd = password_hash($password, PASSWORD_DEFAULT);
@@ -78,12 +74,26 @@
 		//prepare query
 		$stmt = $conn->prepare($query);
 		//bind param
-		$stmt->bind_param("ssss", $id, $name, $email, $hashed_pwd);
+		$stmt->bind_param("sss", $name, $email, $hashed_pwd);
 		//execute
 		$stmt->execute();
 		
-		
-		$_SESSION['userID'] = $id;
+		// get userID
+		$query = "SELECT USER_ID FROM user ";
+		$query .= "WHERE EMAIL = ?";
+		$stmt = $conn->prepare($query);
+
+		//binding parameter
+		$stmt->bind_param("s", $email);
+
+		//execute query
+		$stmt->execute();
+		//get result
+		// object oriented: $stmt is an instance of an object that tries to use functions in parent object
+		$result = $stmt->get_result()->fetch_assoc();
+
+		session_start();
+		$_SESSION['userID'] = $result["USER_ID"];
 
 		header("Location: ../mainPage.php");
 		exit();
