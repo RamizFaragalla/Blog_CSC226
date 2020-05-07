@@ -1,11 +1,10 @@
 need:
 
-- create with file upload
-- security for (create and processCreate)
-
 - hashing +
 - session +
 - update / delete +
 - header: username, email, num posts, log out +
 - edit/delete option next to blogs in main page +
 - main page button +
+- create with file upload +
+- security for (create and processCreate) +

@@ -8,6 +8,7 @@
 	try {
 		//create a connection with mysqli($domain, $username, $password, $database)
 		$conn = new mysqli("localhost", "root", "", "blog");
+		//$conn = new mysqli("163.238.35.165", "faragalla", "ramiz8375", "faragalla_csc226");
 		//avoid weird issues with strings in database
 		$conn->set_charset("utf8mb4");
 	} catch(Exception $e) {

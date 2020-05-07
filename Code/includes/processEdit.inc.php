@@ -9,6 +9,11 @@
 		exit();
 	}
 
+	else if(isset($_POST["cancel"])) {
+		header("Location: ../myBlogs.php");
+		exit();
+	}
+
 	function test_input($data) {
   		$data = trim($data);
   		$data = stripslashes($data);
@@ -49,9 +54,5 @@
 		exit();
 	}
 
-	else if(isset($_POST["cancel"])) {
-		header("Location: ../myBlogs.php");
-		exit();
-	}
 	
 ?>
