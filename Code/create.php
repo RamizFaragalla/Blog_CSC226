@@ -1,5 +1,5 @@
 <!--   <?php
-	include "includes/dbconnect.inc.php";
+	include "dbconnect.inc.php";
 	session_start();
 ?>
 
@@ -93,7 +93,7 @@
 		<form action="createblog.php" method="post">
 			<p align = "left">
 				<label>Blog Title: <input type="text" name="title" size="20" maxlength="40" placeholder="Title"
-					value="
+					value=" //The php code belongs at the bottom of the the form. 
 					<?php 
 					
 					if(isset($_GET["postID"])) 
