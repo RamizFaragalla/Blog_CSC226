@@ -6,8 +6,7 @@ Features of the website:
   - home page lets you read all the blogs that are in the database
   - my blogs page lets you read only your blogs
   - update/delete button lets you update any of your blogs
-  - create button lets you create a new blog
-    user can type the new blog or upload a txt file
+  - create button lets you create a new blog, user can type the new blog or upload a txt file
  
  Our database had two tables:
    1. user: had userID (primary key), name, email, hashed password
