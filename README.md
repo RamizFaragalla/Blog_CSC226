@@ -1,5 +1,5 @@
 # Blog_CSC226
-In this group project, we created a blog website using php and mysql. 
+In this group project, we created a blogging website using php and mysql. 
 
 Features of the website:
   - login/register/logout
