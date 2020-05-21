@@ -8,7 +8,7 @@ Features of the website:
   - update/delete button lets you update any of your blogs
   - create button lets you create a new blog
     user can type the new blog or upload a txt file
-  
-  Our database had two tables:
-    1. user: had userID (primary key), name, email, hashed password
-    2. post: had postID (primary key), userID (foreign key), tite, content, date
+ 
+ Our database had two tables:
+   1. user: had userID (primary key), name, email, hashed password
+   2. post: had postID (primary key), userID (foreign key), tite, content, date
