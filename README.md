@@ -11,4 +11,4 @@ Features of the website:
  
  Our database had two tables:
    1. user: had userID (primary key), name, email, hashed password
-   2. post: had postID (primary key), userID (foreign key), tite, content, date
+   2. post: had postID (primary key), userID (foreign key), title, content, date
